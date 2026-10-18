@@ -6,11 +6,12 @@ Página simples para praticar a respiração 4-2-6, um exercício que ajuda a ac
 - **Segure** por 2 segundos
 - **Expire** por 6 segundos
 
+**Acesse online:** https://duvale-git.github.io/respiracao-4-2-6/
+
 ## Como usar
 
-1. Baixe ou copie a pasta do projeto.
-2. Abra o arquivo `index.html` no navegador (dois cliques).
-3. Clique em **Iniciar** e acompanhe a contagem no centro da tela.
+1. Abra o link acima, ou baixe a pasta do projeto e abra o arquivo `index.html` no navegador (dois cliques). Pela pasta, funciona sem internet.
+2. Clique em **Iniciar** e acompanhe a contagem no centro da tela.
 
 Cada clique em **Iniciar** faz 5 ciclos (cerca de 1 minuto) e para sozinho. Para fazer mais 5, clique em **Iniciar** de novo.
 
@@ -21,7 +22,7 @@ Cada clique em **Iniciar** faz 5 ciclos (cerca de 1 minuto) e para sozinho. Para
 - Contador de todos os ciclos no canto superior direito (volta a zero ao fechar ou recarregar a página)
 - Botões **Pausar/Continuar** e **Reiniciar**; a barra de espaço também inicia e pausa
 - Som suave a cada troca de fase, que pode ser desligado
-- Funciona no computador e no celular, e não precisa de internet
+- Funciona no computador e no celular; pela pasta baixada, não precisa de internet
 
 ## Arquivos
 
