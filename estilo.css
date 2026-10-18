@@ -1,0 +1,224 @@
+:root {
+  --fundo-1: #0e1726;
+  --fundo-2: #1a2c42;
+  --texto: #eaf2f8;
+  --texto-suave: #a7bacb;
+  --cor-inspire: #4fb3d9;
+  --cor-segure: #a094ff;
+  --cor-expire: #5fcf9f;
+  --cor-fase: var(--cor-inspire);
+
+  /* Tamanho do círculo: cabe na largura e na altura, deixando espaço
+     para o topo e o rodapé. */
+  --tam: max(8rem, min(82vw, calc(100vh - 11rem), 26rem));
+}
+
+@supports (height: 100dvh) {
+  :root {
+    --tam: max(8rem, min(82vw, calc(100dvh - 11rem), 26rem));
+  }
+}
+
+body[data-fase="segure"] { --cor-fase: var(--cor-segure); }
+body[data-fase="expire"] { --cor-fase: var(--cor-expire); }
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+  color: var(--texto);
+  background-color: var(--fundo-1);
+  background-image: radial-gradient(circle at center, var(--fundo-2) 0%, var(--fundo-1) 70%);
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Contador total de ciclos (canto superior direito) */
+.total {
+  position: fixed;
+  top: max(10px, env(safe-area-inset-top));
+  right: max(12px, env(safe-area-inset-right));
+  z-index: 2;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.7rem;
+  color: var(--texto-suave);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Topo */
+.topo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: max(16px, env(safe-area-inset-top)) 16px 0;
+  text-align: center;
+  z-index: 1;
+}
+
+.topo h1 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.topo p {
+  margin: 0.25rem 0 0;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+/* Palco: ocupa a tela inteira, então o número fica sempre no centro. */
+.palco {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.alvo {
+  position: relative;
+  width: var(--tam);
+  height: var(--tam);
+  display: grid;
+  place-items: center;
+}
+
+.anel,
+.circulo {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+/* Contorno fixo que mostra o tamanho máximo do círculo. */
+.anel {
+  border: 2px solid var(--cor-fase);
+  opacity: 0.25;
+  transition: border-color 0.8s ease;
+}
+
+.circulo {
+  background-color: var(--cor-fase);
+  opacity: 0.28;
+  box-shadow: 0 0 calc(var(--tam) * 0.2) var(--cor-fase);
+  transform: scale(0.6);
+  transition: background-color 0.8s ease, box-shadow 0.8s ease;
+  will-change: transform;
+}
+
+.numero {
+  position: relative;
+  font-size: calc(var(--tam) * 0.36);
+  font-weight: 300;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.fase {
+  position: absolute;
+  top: calc(50% + var(--tam) * 0.2);
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: max(0.9rem, calc(var(--tam) * 0.065));
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+}
+
+/* Rodapé */
+.rodape {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 16px max(16px, env(safe-area-inset-bottom));
+  text-align: center;
+  z-index: 1;
+}
+
+.controles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+button {
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--texto);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  padding: 0.55rem 1.2rem;
+  min-width: 6.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--cor-fase);
+  outline-offset: 2px;
+}
+
+button.primario {
+  background: var(--cor-fase);
+  border-color: transparent;
+  color: var(--fundo-1);
+  font-weight: 600;
+  transition: background-color 0.8s ease;
+}
+
+button.primario:hover {
+  filter: brightness(1.08);
+}
+
+.progresso {
+  margin: 0.6rem 0 0;
+  font-size: 0.8rem;
+  color: var(--texto-suave);
+}
+
+/* Telas estreitas: título menor e um pouco mais abaixo,
+   para não encostar no contador do canto. */
+@media (max-width: 380px) {
+  .topo {
+    padding-top: max(36px, calc(env(safe-area-inset-top) + 26px));
+  }
+
+  .topo h1 {
+    font-size: 1rem;
+  }
+}
+
+/* Telas muito baixas (ex.: celular deitado): esconde textos secundários. */
+@media (max-height: 420px) {
+  .topo p,
+  .progresso {
+    display: none;
+  }
+
+  :root {
+    --tam: max(7rem, min(82vw, calc(100vh - 7.5rem), 26rem));
+  }
+
+  @supports (height: 100dvh) {
+    :root {
+      --tam: max(7rem, min(82vw, calc(100dvh - 7.5rem), 26rem));
+    }
+  }
+}

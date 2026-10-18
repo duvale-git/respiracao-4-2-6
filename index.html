@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Respiração 4-2-6</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body data-fase="inspire">
+
+  <div class="total" title="Ciclos feitos desde que a página foi aberta">
+    Ciclos: <span id="total">0</span>
+  </div>
+
+  <header class="topo">
+    <h1>Respiração 4-2-6</h1>
+    <p>Inspire 4s · Segure 2s · Expire 6s</p>
+  </header>
+
+  <main class="palco">
+    <div class="alvo">
+      <div class="anel" aria-hidden="true"></div>
+      <div class="circulo" id="circulo" aria-hidden="true"></div>
+      <span class="numero" id="numero">4</span>
+      <span class="fase" id="fase" aria-live="polite">Pronto</span>
+    </div>
+  </main>
+
+  <footer class="rodape">
+    <div class="controles">
+      <button type="button" class="primario" id="btn-iniciar">Iniciar</button>
+      <button type="button" id="btn-reiniciar">Reiniciar</button>
+      <button type="button" id="btn-som" aria-pressed="true">Som: ligado</button>
+    </div>
+    <p class="progresso" id="progresso">Rodada de 5 ciclos</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
